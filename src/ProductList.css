@@ -45,6 +45,7 @@ body {
     flex-direction: column;
     width: 100vw;
     align-items: center;
+    text-align: center;
     justify-content: center;
 }
 .product-list {
