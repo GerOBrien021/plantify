@@ -260,9 +260,9 @@ function ProductList() {
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
 
-        setAddedToCart((prevState) => ({
-            ...prevState, [product.name]: true
-        }));
+        setAddedToCart((prevState) => (
+            {...prevState, [product.name]: true}
+        ));
     }
 
     return (
