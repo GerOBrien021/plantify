@@ -264,7 +264,17 @@ function ProductList() {
         setAddedToCart((prevState) => (
             {...prevState, [product.name]: true}
         ));
+
+        console.log(addedToCart);
     }
+
+    const isInCart = (product) => {
+        let name = product.name;
+
+        if (addedToCart.hasOwnProperty(name)) {
+            return true;
+        }
+    };
 
     // Calculate total quantity for all products in the cart
     const calculateTotalQuantity = () => {
@@ -309,7 +319,12 @@ function ProductList() {
                                         <div className="product-title">{plant.name}</div>
                                         <div>{plant.description}</div>
                                         <div className="product-price">{plant.cost}</div>
-                                        <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                        {!isInCart(plant) ? (
+                                            <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                        ) : (
+                                            <button  className="product-button.added-to-cart">Added to Cart</button>
+                                        )}
+                                        
                                     </div>
                                 ))}
                             </div>
