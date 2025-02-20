@@ -264,14 +264,16 @@ function ProductList() {
         setAddedToCart((prevState) => (
             {...prevState, [product.name]: true}
         ));
-
-        console.log(addedToCart);
     }
 
     const isInCart = (product) => {
         let name = product.name;
+        // console.log('isInCart: The product name is ' + name);
 
-        if (addedToCart.hasOwnProperty(name)) {
+        if (addedToCart.hasOwnProperty(name) && addedToCart[name]) {
+            // console.log(addedToCart);
+            // console.log('isInCart: The plant name is a property in addedToCart');
+            // console.log(addedToCart[name]);
             return true;
         }
     };
