@@ -266,6 +266,16 @@ function ProductList() {
         ));
     }
 
+    const removeFromAddedToCart = (product) => {
+        /* Remove the product from the component-level AddedToCart object, not the application-level cart.
+           This function will be passed to the CartItem subcomponent.
+           It's an exercise in passing state without using Redux. */
+
+           setAddedToCart((prevState) => (
+            {...prevState, [product.name]: false}
+        ));
+    }
+
     const isInCart = (product) => {
         let name = product.name;
         // console.log('isInCart: The product name is ' + name);
@@ -325,8 +335,7 @@ function ProductList() {
                                             <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
                                         ) : (
                                             <button  className="product-button.added-to-cart">Added to Cart</button>
-                                        )}
-                                        
+                                        )}  
                                     </div>
                                 ))}
                             </div>
@@ -334,7 +343,7 @@ function ProductList() {
                     ))}
                 </div>
             ) :  (
-                <CartItem onContinueShopping={handleContinueShopping} />
+                <CartItem onContinueShopping={handleContinueShopping}  onDelete={removeFromAddedToCart}/>
             )}
         </div>
     );

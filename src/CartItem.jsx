@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping, onDelete }) => {
     const cart = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
 
@@ -32,6 +32,13 @@ const CartItem = ({ onContinueShopping }) => {
 
     const handleRemove = (item) => {
         dispatch(removeItem(item.name));
+
+        // Need to also remove the item from the addedToCart object.
+        // addedToCart is component-level state of CartItem's parent (ProductList).
+        // removeFromAddedToCart is passed in as a parameter to this component.
+        // Hope it works :-)
+
+        onDelete(item);
     };
 
     // Calculate total cost based on quantity for an item
